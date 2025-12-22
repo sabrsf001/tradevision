@@ -549,7 +549,7 @@ const App: React.FC = () => {
             
             setTradePositions(prev => [...prev, newPosition]);
             setPaperBalance(prev => prev - orderValue);
-            haptics.success();
+            haptics.notification('success');
             setToast({ 
                 message: `Position opened: ${order.side.toUpperCase()} ${order.quantity} ${order.symbol}`, 
                 type: 'success' 
@@ -587,7 +587,7 @@ const App: React.FC = () => {
             }]);
             
             setPaperBalance(prev => prev + (position.entryPrice * position.quantity) + pnl);
-            haptics.success();
+            haptics.notification('success');
             setToast({ 
                 message: `Position closed: ${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}`, 
                 type: pnl >= 0 ? 'success' : 'alert' 
@@ -631,7 +631,7 @@ const App: React.FC = () => {
         setConnectedExchangeIds(prev => [...prev, exchangeId]);
         setIsPaperMode(false);
         setActiveExchange(exchangeId);
-        haptics.success();
+        haptics.notification('success');
         setToast({ message: `Connected to ${exchangeId}!`, type: 'success' });
     }, [haptics]);
 
@@ -874,7 +874,7 @@ const App: React.FC = () => {
                         {mode === 'standard' && (
                             <BottomToolbar
                                 currentTimeframe={timeframe}
-                                onTimeframeChange={(tf) => setTimeframe(tf)}
+                                onTimeframeChange={(tf) => setTimeframe(tf as Timeframe)}
                                 isPaperMode={isPaperMode}
                                 paperBalance={paperBalance}
                                 activeExchange={activeExchange}
