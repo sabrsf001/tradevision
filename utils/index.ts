@@ -60,3 +60,31 @@ export {
   copyToClipboard,
   generateShareableUrl,
 } from './socialShare';
+
+// Smart Money Concepts
+export {
+  type SwingPoint,
+  type OrderBlock,
+  type FairValueGap,
+  type StructureBreak,
+  type LiquiditySweep,
+  type SMCAnalysis,
+  detectSwingPoints,
+  detectOrderBlocks,
+  detectFairValueGaps,
+  detectStructureBreaks,
+  detectLiquiditySweeps,
+  calculatePremiumDiscount,
+  analyzeSMC,
+  generateSMCAnalysisText,
+} from './smartMoneyConcepts';
+
+// Advanced Alerts
+export {
+  type AlertCondition,
+  type AdvancedAlert,
+  type AlertChannel,
+  type AlertHistory,
+  ALERT_TEMPLATES,
+  alertManager,
+} from './advancedAlerts';
