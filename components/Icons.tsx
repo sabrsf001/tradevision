@@ -88,7 +88,11 @@ import {
   BookOpen,
   FileText,
   ExternalLink,
-  Link2
+  Link2,
+  Bot,
+  Users,
+  Shield,
+  CheckCircle
 } from 'lucide-react';
 
 export {
@@ -181,5 +185,9 @@ export {
   BookOpen,
   FileText,
   ExternalLink,
-  Link2
+  Link2,
+  Bot,
+  Users,
+  Shield,
+  CheckCircle
 };

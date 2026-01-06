@@ -35,6 +35,7 @@ import BottomToolbar from './components/BottomToolbar';
 import AdvancedOrderModal, { OrderDetails } from './components/AdvancedOrderModal';
 import ExchangeConnectionModal from './components/ExchangeConnectionModal';
 import OnboardingTutorial, { hasCompletedOnboarding } from './components/OnboardingTutorial';
+import FeaturesPanel from './components/FeaturesPanel';
 import { useHaptics } from './hooks/useHaptics';
 
 const App: React.FC = () => {
@@ -136,6 +137,7 @@ const App: React.FC = () => {
     const [isTradingJournalOpen, setIsTradingJournalOpen] = useState(false);
     const [isOrderBookOpen, setIsOrderBookOpen] = useState(false);
     const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
+    const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
     
     // Trading Panel States
     const [isAdvancedOrderOpen, setIsAdvancedOrderOpen] = useState(false);
@@ -773,6 +775,7 @@ const App: React.FC = () => {
                     onSettingsClick={() => setIsSettingsOpen(true)}
                     onJournalClick={() => setIsTradingJournalOpen(true)}
                     onShortcutsClick={() => setIsShortcutsOpen(true)}
+                    onFeaturesClick={() => setIsFeaturesOpen(true)}
                     isAuthenticated={isAuthenticated}
                 />
                 <AIPanel isVisible={mode === 'ai'} currentSymbol={symbol} currentTimeframe={timeframe} currentPrice={currentPrice} chartData={aiContextData} onDrawCommand={handleAIDrawCommand} connectedExchanges={connectedExchanges} />
@@ -1051,6 +1054,13 @@ const App: React.FC = () => {
                 isOpen={isOnboardingOpen}
                 onClose={() => setIsOnboardingOpen(false)}
                 onComplete={() => setToast({ message: 'Welcome to TradeVision AI! 🚀', type: 'success' })}
+            />
+            <FeaturesPanel
+                isOpen={isFeaturesOpen}
+                onClose={() => setIsFeaturesOpen(false)}
+                currentPrice={currentPrice}
+                symbol={symbol}
+                paperBalance={paperBalance}
             />
         </div>
     );

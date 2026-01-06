@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TrendingUp, Bell, Sparkles, AlertTriangle, UserCircle2, LogIn, Settings2, BookOpen, Keyboard } from './Icons';
+import { TrendingUp, Bell, Sparkles, AlertTriangle, UserCircle2, LogIn, Settings2, BookOpen, Keyboard, Layers } from './Icons';
 import { ChartMode } from '../types';
 
 interface SidebarProps {
@@ -12,10 +12,11 @@ interface SidebarProps {
   onSettingsClick?: () => void;
   onJournalClick?: () => void;
   onShortcutsClick?: () => void;
+  onFeaturesClick?: () => void;
   isAuthenticated?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentMode, onModeChange, onAlertClick, hasActiveAlerts, onProfileClick, onSettingsClick, onJournalClick, onShortcutsClick, isAuthenticated }) => {
+const Sidebar: React.FC<SidebarProps> = ({ currentMode, onModeChange, onAlertClick, hasActiveAlerts, onProfileClick, onSettingsClick, onJournalClick, onShortcutsClick, onFeaturesClick, isAuthenticated }) => {
   const getButtonClass = (mode: ChartMode) => {
     const isActive = currentMode === mode;
     return `w-full p-2 sm:p-3 flex justify-center items-center transition-all duration-200 border-l-2 touch-active ${isActive 
@@ -65,6 +66,14 @@ const Sidebar: React.FC<SidebarProps> = ({ currentMode, onModeChange, onAlertCli
         title="Trading Journal"
       >
         <BookOpen className="h-5 w-5" />
+      </button>
+
+      <button 
+        onClick={onFeaturesClick}
+        className="w-full p-2 sm:p-3 flex justify-center items-center text-purple-400 hover:text-purple-300 hover:bg-[#252525] active:bg-[#2d2d2d] transition-colors touch-active"
+        title="Pro Features (Bots, Portfolio, Social)"
+      >
+        <Layers className="h-5 w-5" />
       </button>
 
       <div className="flex-grow"></div>

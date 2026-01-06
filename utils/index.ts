@@ -68,7 +68,7 @@ export {
   type FairValueGap,
   type StructureBreak,
   type LiquiditySweep,
-  type SMCAnalysis,
+  type SMCAnalysisResult,
   detectSwingPoints,
   detectOrderBlocks,
   detectFairValueGaps,
@@ -83,8 +83,8 @@ export {
 export {
   type AlertCondition,
   type AdvancedAlert,
-  type AlertChannel,
-  type AlertHistory,
+  type NotificationChannel,
+  type AlertTriggerEvent,
   ALERT_TEMPLATES,
   alertManager,
 } from './advancedAlerts';

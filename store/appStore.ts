@@ -213,7 +213,7 @@ export interface ChartInstance {
 interface MultiChartState {
   charts: ChartInstance[];
   activeChartId: string | null;
-  layout: '1x1' | '1x2' | '2x1' | '2x2';
+  layout: '1x1' | '1x2' | '2x1' | '2x2' | '1x3' | '3x1' | '2x3' | '3x2' | '3x3';
   addChart: (symbol: string) => void;
   removeChart: (id: string) => void;
   setActiveChart: (id: string) => void;
@@ -226,7 +226,7 @@ export const useMultiChartStore = create<MultiChartState>((set, get) => ({
   activeChartId: 'main',
   layout: '1x1',
   addChart: (symbol) => {
-    const maxCharts = { '1x1': 1, '1x2': 2, '2x1': 2, '2x2': 4 };
+    const maxCharts: Record<string, number> = { '1x1': 1, '1x2': 2, '2x1': 2, '2x2': 4, '1x3': 3, '3x1': 3, '2x3': 6, '3x2': 6, '3x3': 9 };
     if (get().charts.length >= maxCharts[get().layout]) return;
     
     const newChart: ChartInstance = {
@@ -251,7 +251,7 @@ export const useMultiChartStore = create<MultiChartState>((set, get) => ({
     }));
   },
   setLayout: (layout) => {
-    const maxCharts = { '1x1': 1, '1x2': 2, '2x1': 2, '2x2': 4 };
+    const maxCharts: Record<string, number> = { '1x1': 1, '1x2': 2, '2x1': 2, '2x2': 4, '1x3': 3, '3x1': 3, '2x3': 6, '3x2': 6, '3x3': 9 };
     set((s) => ({
       layout,
       charts: s.charts.slice(0, maxCharts[layout]),

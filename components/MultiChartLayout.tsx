@@ -6,7 +6,7 @@
 import React, { useState, useCallback } from 'react';
 import { useMultiChartStore, type ChartInstance } from '../store/appStore';
 import { ChartSkeleton } from './LoadingSkeleton';
-import { Square, Layers, Plus, X, Check, Save, Download, Share, Link, Settings } from './Icons';
+import { Square, Layers, Plus, X, Check, Save, Download, Share2, Link2, Settings2 } from './Icons';
 
 type LayoutType = '1x1' | '1x2' | '2x1' | '2x2' | '1x3' | '3x1' | '2x3' | '3x2' | '3x3';
 

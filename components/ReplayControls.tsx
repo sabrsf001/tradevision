@@ -18,7 +18,7 @@ const ReplayControls: React.FC<ReplayControlsProps> = ({
   isPlaying, onPlayPause, onStep, onExit, progress, total, onSeek, currentDate, speed, onSpeedChange
 }) => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-color)] p-4 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.5)] animate-fade-in">
+    <div className="absolute left-0 right-0 bg-[var(--bg-secondary)] border-t border-[var(--border-color)] p-4 z-[100] shadow-[0_-4px_12px_rgba(0,0,0,0.5)] animate-fade-in" style={{ bottom: '72px' }}>
       <div className="flex items-center gap-4 mb-3">
         <div className="flex items-center gap-2">
           <button 

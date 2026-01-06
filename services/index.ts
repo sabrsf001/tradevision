@@ -59,12 +59,9 @@ export {
   decryptData,
   storeExchangeCredentials,
   getExchangeCredentials,
-  deleteExchangeCredentials,
-  getAuditLog,
-  clearAuditLog,
+  getAuditLogs,
+  clearAuditLogs,
   checkPasswordStrength,
-  sessionManager,
-  rateLimiter,
 } from './security';
 
 // Multi-Exchange
@@ -94,7 +91,8 @@ export {
   type GridBotConfig,
   type SignalBotConfig,
   type TrailingBotConfig,
-  type BotTrade,
+  type BotOrder,
+  type BotBase,
   type TradingBot,
   botManager,
 } from './tradingBots';
