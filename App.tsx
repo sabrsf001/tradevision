@@ -873,8 +873,8 @@ const App: React.FC = () => {
                             />
                         )}
 
-                        {/* Bottom Toolbar with Date Range + Trading Panel */}
-                        {mode === 'standard' && (
+                        {/* Bottom Toolbar with Date Range + Trading Panel - hidden during replay */}
+                        {mode === 'standard' && !isReplayActive && (
                             <BottomToolbar
                                 currentTimeframe={timeframe}
                                 onTimeframeChange={(tf) => setTimeframe(tf as Timeframe)}
