@@ -1,9 +1,11 @@
 /**
  * Local AI Analysis - No API Key Required
  * Pattern recognition for supply/demand zones, support/resistance, etc.
+ * Enhanced with AI Trading Engine integration
  */
 
 import { CandleData } from '../types';
+import { AITradingEngine, AIAnalysis } from '../services/aiTradingEngine';
 
 export interface Zone {
   id: string;
@@ -39,6 +41,10 @@ export interface AIAnalysisResult {
   sentiment: 'bullish' | 'bearish' | 'neutral';
   confidence: number;
 }
+
+// Re-export AI Trading Engine for convenience
+export { AITradingEngine };
+export type { AIAnalysis };
 
 function calculateAverageRange(candles: CandleData[]): number {
   const ranges = candles.map(c => c.high - c.low);

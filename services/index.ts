@@ -151,3 +151,51 @@ export {
   type PerformanceSnapshot,
   monitoring,
 } from './monitoring';
+
+// AI Trading Engine
+export {
+  type AISignal,
+  type MarketStructure,
+  type OrderBlock,
+  type FVG,
+  type LiquidityPool,
+  type PatternDetection,
+  type AIAnalysis,
+  type Divergence,
+  AITradingEngine,
+} from './aiTradingEngine';
+
+// AI Providers
+export {
+  type AIProvider,
+  type AIProviderConfig,
+  type AIMessage,
+  type AIResponse,
+  type AIContext,
+  aiService,
+} from './aiProviders';
+
+// AI Signals
+export {
+  type SignalAlert,
+  type SignalFilter,
+  type SignalStats,
+  type MultiTimeframeSignal,
+  signalManager,
+  mtfAnalyzer,
+  signalScreener,
+  alertSystem,
+  formatSignalNotification,
+  formatSignalForDiscord,
+  formatSignalForTelegram,
+} from './aiSignals';
+
+// Sentiment Analyzer
+export {
+  type NewsItem,
+  type SocialPost,
+  type OnChainMetrics,
+  type FearGreedIndex,
+  type SentimentAnalysis,
+  sentimentService,
+} from './sentimentAnalyzer';
