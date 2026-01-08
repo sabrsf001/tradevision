@@ -1,0 +1,7 @@
+# TradeVision AI - robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap (uncomment when sitemap is available)
+# Sitemap: https://tradevision.ai/sitemap.xml

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TradeVision">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="description" content="TradeVision AI - Professional Trading Charts with AI Analysis">
+    <title>TradeVision AI</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/tradevision/manifest.json">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    
+    <!-- Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Dark theme (default) */
+        :root, .dark {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-panel: #0f0f0f;
+            --bg-tertiary: #141414;
+            --border-color: #1a1a1a;
+            --border-primary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #666666;
+            --accent-bullish: #26a69a;
+            --accent-bearish: #ef5350;
+            --accent-blue: #2962ff;
+            --accent-primary: #2962ff;
+            --accent-green: #26a69a;
+            --accent-red: #ef5350;
+        }
+        
+        /* Light theme */
+        .light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-panel: #ebebeb;
+            --bg-tertiary: #e0e0e0;
+            --border-color: #d0d0d0;
+            --border-primary: #d0d0d0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent-bullish: #26a69a;
+            --accent-bearish: #ef5350;
+            --accent-blue: #2962ff;
+            --accent-primary: #2962ff;
+            --accent-green: #26a69a;
+            --accent-red: #ef5350;
+        }
+        
+        body { 
+            background-color: var(--bg-primary); 
+            color: var(--text-primary); 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background-color: #4f4f4f; border-radius: 20px; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #6f6f6f; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .animate-slide-up { animation: slideUp 0.3s ease-out; }
+        
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        .animate-slide-down { animation: slideDown 0.3s ease-out; }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin { animation: spin 1s linear infinite; }
+        
+        @keyframes bounce { 0%, 100% { transform: translateY(-25%); } 50% { transform: translateY(0); } }
+        .animate-bounce { animation: bounce 1s infinite; }
+        
+        /* AI Quick Actions animations */
+        @keyframes slideInRight { 
+            from { transform: translateX(100%); opacity: 0; } 
+            to { transform: translateX(0); opacity: 1; } 
+        }
+        .animate-slide-in-right { animation: slideInRight 0.3s ease-out; }
+        
+        @keyframes glow { 
+            0%, 100% { box-shadow: 0 0 5px rgba(147, 51, 234, 0.5); } 
+            50% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.8), 0 0 30px rgba(147, 51, 234, 0.4); } 
+        }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        
+        @keyframes drawLine {
+            from { clip-path: inset(0 100% 0 0); }
+            to { clip-path: inset(0 0 0 0); }
+        }
+        .animate-draw-line { animation: drawLine 0.5s ease-out forwards; }
+        
+        @keyframes expandZone {
+            from { transform: scaleY(0); opacity: 0; }
+            to { transform: scaleY(1); opacity: 1; }
+        }
+        .animate-expand-zone { animation: expandZone 0.4s ease-out forwards; transform-origin: center; }
+        
+        /* Mobile/Tablet optimizations */
+        @media (max-width: 768px) {
+            body { touch-action: manipulation; }
+        }
+        
+        /* Prevent pull-to-refresh */
+        html, body {
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Safe area for notched devices */
+        @supports (padding: max(0px)) {
+            .safe-area-top {
+                padding-top: max(0.5rem, env(safe-area-inset-top));
+            }
+            .safe-area-bottom {
+                padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+            }
+            .safe-area-left {
+                padding-left: max(0px, env(safe-area-inset-left));
+            }
+            .safe-area-right {
+                padding-right: max(0px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Touch feedback */
+        .touch-active {
+            -webkit-tap-highlight-color: transparent;
+            transition: opacity 0.1s, transform 0.1s;
+        }
+        .touch-active:active {
+            opacity: 0.7;
+            transform: scale(0.98);
+        }
+        
+        /* Touch manipulation for better mobile perf */
+        .touch-manipulation {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Scrollbar hide utility */
+        .scrollbar-hide, .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar, .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Overscroll containment */
+        .overscroll-contain {
+            overscroll-behavior: contain;
+        }
+        
+        /* Mobile-friendly focus states */
+        @media (max-width: 640px) {
+            input:focus, button:focus, select:focus, textarea:focus {
+                outline: 2px solid var(--accent-blue);
+                outline-offset: 2px;
+            }
+        }
+        
+        /* Prevent text selection on buttons */
+        button {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* Ensure minimum touch target size */
+        @media (max-width: 640px) {
+            .min-touch-target {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+        
+        /* PWA installation prompt styling */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 80px;
+            left: 16px;
+            right: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+  <script type="module" crossorigin src="/tradevision/assets/index-Qc5XbgiT.js"></script>
+  <link rel="modulepreload" crossorigin href="/tradevision/assets/react-vendor-COd4auuD.js">
+  <link rel="modulepreload" crossorigin href="/tradevision/assets/chart-vendor-CJKvCeXH.js">
+<link rel="manifest" href="/tradevision/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/tradevision/registerSW.js"></script></head>
+<body>
+    <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
