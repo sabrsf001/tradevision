@@ -9,6 +9,7 @@ import Watchlist from './components/Watchlist';
 import Chart from './components/Chart';
 import ReplayControls from './components/ReplayControls';
 import AIPanel from './components/AIPanel';
+import AIQuickActions from './components/AIQuickActions';
 import BlackSwanPanel from './components/BlackSwanPanel';
 import Toast from './components/Toast';
 import AlertsManager from './components/AlertsManager';
@@ -854,6 +855,18 @@ const App: React.FC = () => {
                             isPaperMode={isPaperMode}
                             currentPrice={currentPrice}
                         />
+                        
+                        {/* AI Quick Actions - Floating buttons for instant analysis */}
+                        {mode === 'standard' && !isReplayActive && (
+                            <AIQuickActions
+                                chartData={displayData}
+                                symbol={symbol}
+                                timeframe={timeframe}
+                                onDrawCommand={handleAIDrawCommand}
+                                isVisible={true}
+                            />
+                        )}
+                        
                         {isReplayActive && <ReplayControls isPlaying={isPlaying} onPlayPause={() => setIsPlaying(!isPlaying)} onStep={handleStepReplay} onExit={handleToggleReplay} progress={replayIndex} total={fullData.length} onSeek={setReplayIndex} currentDate={displayData[displayData.length-1] ? new Date(displayData[displayData.length-1].time * 1000).toLocaleDateString() : ''} speed={replaySpeed} onSpeedChange={setReplaySpeed} />}
 
                         {/* Chart Position Overlay */}
